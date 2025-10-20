@@ -3,8 +3,8 @@ using UnityEngine;
 public class PlatformerController : MonoBehaviour
 {
     [Header("Movement Settings")]
-    [SerializeField] private float moveSpeed = 7f;
-    [SerializeField] private float jumpForce = 12f;
+    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float jumpForce = 15;
     
     [Header("Ground Check")]
     [SerializeField] private Transform groundCheck;
