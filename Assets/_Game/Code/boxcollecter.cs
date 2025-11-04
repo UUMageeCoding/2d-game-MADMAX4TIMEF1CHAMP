@@ -10,6 +10,7 @@ public class BoxCollecter : MonoBehaviour
 
         if (collision.CompareTag("player2"))
         {
+            GameManager.Instance.BoxCollected();
             //Add code to collect the box
             Destroy(gameObject);
         }

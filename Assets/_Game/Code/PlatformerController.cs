@@ -14,6 +14,7 @@ public class PlatformerController : MonoBehaviour
     private Rigidbody2D rb;
     private bool isGrounded;
     private float moveInput;
+    private bool hasJumped = false; 
     
     void Start()
     {
@@ -32,12 +33,18 @@ public class PlatformerController : MonoBehaviour
         
         // Check if grounded
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
-        
+
         // Jump input
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (Input.GetButtonDown("Jump") && isGrounded && !hasJumped)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            hasJumped = true;
         }
+        else if (isGrounded && Input.GetButtonUp("Horizontal"))
+        {
+            hasJumped = false;
+        }
+        
     }
     
     void FixedUpdate()
