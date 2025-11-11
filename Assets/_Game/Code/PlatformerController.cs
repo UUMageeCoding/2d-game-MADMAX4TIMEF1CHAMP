@@ -15,10 +15,12 @@ public class PlatformerController : MonoBehaviour
     private bool isGrounded;
     private float moveInput;
     private bool hasJumped = false; 
+    private Animator anim;
     
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
         
         // Set to Dynamic with gravity
         rb.bodyType = RigidbodyType2D.Dynamic;
@@ -35,14 +37,25 @@ public class PlatformerController : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
         // Jump input
-        if (Input.GetButtonDown("Jump") && isGrounded && !hasJumped)
+        if (Input.GetButtonDown("Jump") && isGrounded)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-            hasJumped = true;
+            anim.SetBool("isJumping", true);
+
+
         }
-        else if (isGrounded && Input.GetButtonUp("Horizontal"))
+        else if (isGrounded)
         {
-            hasJumped = false;
+            anim.SetBool("isJumping", false);
+        }
+
+        if (moveInput != 0)
+        {
+            anim.SetBool("isRunning", true);
+        }
+        else
+        {
+            anim.SetBool("isRunning", false);
         }
         
     }
