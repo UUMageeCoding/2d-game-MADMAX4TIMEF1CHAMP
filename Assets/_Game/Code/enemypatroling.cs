@@ -10,6 +10,7 @@ public class enemypatroling : MonoBehaviour
     private Animator anim;
     private Transform currentPoint;
     public float speed;
+    public float midPoint;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -23,24 +24,31 @@ public class enemypatroling : MonoBehaviour
     void Update()
     {
         Vector2 point = currentPoint.position - transform.position;
+        Debug.Log("POSITION: " + point);
         if (currentPoint == pointB.transform)
         {
+
             rb.linearVelocity = new Vector2(speed, 0);
+            Debug.Log("MOVING RIGHT");
         }
         else
         {
             rb.linearVelocity = new Vector2(-speed, 0);
+            Debug.Log("MOVING LEFT");
         }
 
-        if (Vector2.Distance(transform.position, currentPoint.position) < 0.5f && currentPoint == pointB.transform)
+        if (Vector2.Distance(transform.position, currentPoint.position) < midPoint && currentPoint == pointB.transform)
         {
+            
             flip();
             currentPoint = pointA.transform;
+            Debug.Log("FLIP A point" + currentPoint.position);
         }
-        if (Vector2.Distance(transform.position, currentPoint.position) < 0.5f && currentPoint == pointA.transform)
+        if (Vector2.Distance(transform.position, currentPoint.position) < midPoint && currentPoint == pointA.transform)
         {
             flip();
             currentPoint = pointB.transform;
+             Debug.Log("FLIP B point" + currentPoint.position);
         }
 
     }

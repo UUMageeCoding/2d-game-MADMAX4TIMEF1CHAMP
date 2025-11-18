@@ -15,8 +15,8 @@ public class GameManager : MonoBehaviour
         get { return _instance; }
 
     }
-    private int numberOfBoxesCollected = 0;
-    public TextMeshProUGUI boxCounterText;
+    private int numberOfCoinsCollected = 0;
+    public TextMeshProUGUI coinCounterText;
      
      public TextMeshProUGUI healthText;
     void Awake()
@@ -43,11 +43,11 @@ public class GameManager : MonoBehaviour
         }
 
     }
-    public void BoxCollected()
+    public void CoinsCollected()
     {
-        numberOfBoxesCollected++;
-        Debug.Log("Boxes collected: " + numberOfBoxesCollected);
-        boxCounterText.text = "Boxes: " + numberOfBoxesCollected;
+        numberOfCoinsCollected++;
+        Debug.Log("Coins collected: " + numberOfCoinsCollected);
+        coinCounterText.text = "Coins: " + numberOfCoinsCollected;
     }
 
 }

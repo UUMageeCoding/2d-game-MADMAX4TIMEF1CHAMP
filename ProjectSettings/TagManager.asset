@@ -7,6 +7,9 @@ TagManager:
   - player2
   - box
   - enemy
+  - soild
+  - coin
+  - solid
   layers:
   - Default
   - TransparentFX
