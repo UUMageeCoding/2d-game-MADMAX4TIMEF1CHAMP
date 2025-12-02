@@ -8,18 +8,17 @@ public class Playerhealth : MonoBehaviour
     public int health = 100;
     public Text healthText;
 
-    void OnTriggerEnter2D(Collider2D other)
+    void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.name == "enemy")
-        {
-            health--;
-            
+        if (other.gameObject.CompareTag("enemy")) 
+        { 
+            health -= 10;    
             healthText.text = "HP: " + health;
-            
-            if (health == 0)
-            {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            }
+        } 
+        
+        if (health <= 0)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 }
